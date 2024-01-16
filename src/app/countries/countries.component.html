@@ -1,1 +1,6 @@
-<p>countries works!</p>
+<select name="countries" id="countries" (change)="onChangeHandler($any($event.target).value)">
+  <option>Select Country</option>
+  <option *ngFor="let country of countries">{{country.country_name}}</option>
+</select>
+<app-states [selectedCountry]="countrySelected"></app-states>
+<!--<button">Click Me!</button>-->

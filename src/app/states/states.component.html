@@ -1,1 +1,5 @@
-<p>states works!</p>
+<select name="states" id="states" (change)="onChangeHandler($any($event.target).value)">
+  <option>Select State</option>
+  <option *ngFor="let state of states">{{state.state_name}}</option>
+</select>
+<app-cities [selectedCity]="selectedCity"></app-cities>

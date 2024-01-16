@@ -1,10 +1,14 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {CitiesService} from "../cities.service";
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CitiesService } from "../cities.service";
+import { NgForOf } from "@angular/common";
+import { FetchService } from "../fetch.service";
 
 @Component({
   selector: 'app-cities',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf
+  ],
   templateUrl: './cities.component.html',
   styleUrl: './cities.component.css'
 })
@@ -12,7 +16,8 @@ export class CitiesComponent implements OnChanges {
   @Input() selectedCity: string | undefined;
 
   constructor(
-    private citiesService: CitiesService
+    private citiesService: CitiesService,
+    private fetchService: FetchService
   ) {}
 
   cities: { city_name: string }[] = [];
@@ -21,9 +26,12 @@ export class CitiesComponent implements OnChanges {
     // console.log(changes);
     // let val = this.selectedCountry;
     // console.log(val);
-    if(!changes['selectedCity'].firstChange) {
+    // if(changes['selectedCity'].currentValue === "") {
+    //   this.cities = [];
+    // }
+    if(changes['selectedCity'].currentValue !== "" && changes['selectedCity'].currentValue !== undefined) {
       this.cities = [];
-      this.citiesService.fetchCities(changes['selectedCountry'].currentValue)
+      this.citiesService.fetchCities(changes['selectedCity'].currentValue)
         .subscribe(data => {
           data.forEach(value => {
             this.cities.push(value);
