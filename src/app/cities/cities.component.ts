@@ -13,7 +13,7 @@ import { FetchService } from "../fetch.service";
   styleUrl: './cities.component.css'
 })
 export class CitiesComponent implements OnChanges {
-  @Input() selectedCity: string | undefined;
+  @Input() selectedState: string | undefined;
 
   constructor(
     private citiesService: CitiesService,
@@ -29,14 +29,16 @@ export class CitiesComponent implements OnChanges {
     // if(changes['selectedCity'].currentValue === "") {
     //   this.cities = [];
     // }
-    if(changes['selectedCity'].currentValue !== "" && changes['selectedCity'].currentValue !== undefined) {
+    if(changes['selectedState'].currentValue !== "" && changes['selectedState'].currentValue !== undefined) {
       this.cities = [];
-      this.citiesService.fetchCities(changes['selectedCity'].currentValue)
+      this.citiesService.fetchCities(changes['selectedState'].currentValue)
         .subscribe(data => {
           data.forEach(value => {
             this.cities.push(value);
           })
         })
+    } else {
+      this.cities = [];
     }
   }
 }

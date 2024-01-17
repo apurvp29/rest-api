@@ -1,7 +1,7 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
-import {StatesService} from "../states.service";
-import {CitiesComponent} from "../cities/cities.component";
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { NgForOf, NgIf } from "@angular/common";
+import { StatesService } from "../states.service";
+import { CitiesComponent } from "../cities/cities.component";
 
 @Component({
   selector: 'app-states',
@@ -22,7 +22,7 @@ export class StatesComponent implements OnChanges {
   ) {}
 
   states: { state_name: string }[] = [];
-  selectedCity: string | undefined;
+  selectedState: string | undefined;
 
   ngOnChanges(changes: SimpleChanges): void {
     // console.log(changes);
@@ -37,10 +37,10 @@ export class StatesComponent implements OnChanges {
           })
         })
     }
-    // this.selectedCity = "";
+    this.selectedState = "";
   }
 
   onChangeHandler(event: Event) {
-    this.selectedCity = event.toString();
+    this.selectedState = event.toString();
   }
 }

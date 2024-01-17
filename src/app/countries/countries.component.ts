@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Country } from "../Country";
 import { NgForOf } from "@angular/common";
 import { FetchService } from "../fetch.service";
-import {StatesComponent} from "../states/states.component";
+import { StatesComponent } from "../states/states.component";
 
 @Component({
   selector: 'app-countries',
